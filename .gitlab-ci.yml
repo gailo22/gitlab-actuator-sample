@@ -31,7 +31,7 @@ k8s-deploy:
   stage: deploy
   script:
   - echo "$GOOGLE_KEY" > key.json
-  - gcloud auth activate-service-account --key-file key.json
+  - gcloud auth activate-service-account syndev1 --key-file key.json
   - gcloud config set compute/zone europe-west1-c
   - gcloud config set project actuator-sample
   - gcloud config set container/use_client_certificate True
