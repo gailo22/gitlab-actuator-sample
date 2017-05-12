@@ -38,7 +38,6 @@ k8s-deploy-staging:
   - gcloud container clusters get-credentials actuator-sample --project actuator-sample-167108
   - kubectl delete secret registry.gitlab.com
   - kubectl create secret docker-registry registry.gitlab.com --docker-server=https://registry.gitlab.com --docker-username=syndev1 --docker-password=$REGISTRY_PASSWD --docker-email=tcouriol@synovia.fr
-  - kubectl create namespace staging
   - kubectl apply -f deployment.yml --namespace=staging
   environment:
     name: staging
@@ -55,9 +54,10 @@ k8s-deploy-production:
   - gcloud config set compute/zone europe-west1-c
   - gcloud config set project actuator-sample
   - gcloud config set container/use_client_certificate True
-  - gcloud container clusters get-credentials actuator-example
+  - gcloud container clusters get-credentials actuator-sample --project actuator-sample-167108
   - kubectl delete secret registry.gitlab.com
-  - kubectl create secret docker-registry registry.gitlab.com --docker-server=https://registry.gitlab.com --docker-username=marcolenzo --docker-password=$REGISTRY_PASSWD --docker-email=lenzo.marco@gmail.com
+  - kubectl create secret docker-registry registry.gitlab.com --docker-server=https://registry.gitlab.com --docker-username=syndev1 --docker-password=$REGISTRY_PASSWD --docker-email=tcouriol@synovia.fr
+  - kubectl create namespace production
   - kubectl apply -f deployment.yml --namespace=production
   environment:
     name: production
